@@ -1,0 +1,42 @@
+<view class="container">
+  <view class="scan-header">
+    <image class="scan-icon" src="/images/scan_icon.png" mode="aspectFit"></image>
+    <view class="scan-title">蓝牙设备扫描</view>
+    <view class="device-count">已发现 {{deviceCount}} 个外围设备</view>
+  </view>
+  
+  <view class="scan-control">
+    <button class="scan-btn {{isScanning ? 'scanning' : ''}}" bindtap="toggleScan">
+      {{isScanning ? '扫描中...' : '开始扫描'}}
+    </button>
+  </view>
+  
+  <scroll-view class="device-list" scroll-y enhanced show-scrollbar="{{false}}">
+    <view 
+      wx:for="{{devices}}" 
+      wx:key="deviceId"
+      class="device-item"
+      data-device-id="{{item.deviceId}}"
+      data-name="{{item.name || item.localName || '未知设备'}}"
+      bindtap="onDeviceConnect"
+      hover-class="device-item-hover"
+    >
+      <view class="device-info">
+        <view class="device-name">
+          <text class="name-text">{{item.name || item.localName || '未知设备'}}</text>
+          <text class="connect-status {{item.connected ? 'connected' : ''}}">
+            {{item.connected ? '已连接' : '未连接'}}
+          </text>
+        </view>
+        <view class="device-details">
+          <text class="detail-item">信号强度: {{item.RSSI}}dBm</text>
+          <text class="detail-item">信号质量: {{getSignalStrength(item.RSSI)}}%</text>
+        </view>
+        <view class="device-uuid">
+          <text class="uuid-text">UUID: {{item.deviceId}}</text>
+          <text class="service-count">服务数量: {{getServiceCount(item.advertisServiceUUIDs)}}</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

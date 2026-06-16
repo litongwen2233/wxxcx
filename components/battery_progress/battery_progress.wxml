@@ -1,0 +1,6 @@
+<!--components/battery_progress/battery_progress.wxml-->
+<view class="battery-container">
+  <view class="battery {{batteryLevel}}">
+    <text class="battery-text">{{percent}}%</text>
+  </view>
+</view>

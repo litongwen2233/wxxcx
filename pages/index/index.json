@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "pack-progress":"/components/battery_progress/battery_progress",
+    "bottom":"/components/bottom_bav/Bottom_nav",
+    "cell-voltage":"/components/Card_Cell/Cell"
+
+  }
+}

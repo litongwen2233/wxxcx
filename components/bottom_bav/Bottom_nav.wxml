@@ -1,0 +1,11 @@
+<view class="bottom-nav">
+  <button
+    wx:for="{{navItems}}"
+    wx:key="index"
+    class="btn {{currentIndex === item.index ? 'active' : ''}}"
+    bindtap="onSwitchTab"
+    data-index="{{item.index}}"
+  >
+    {{item.name}}
+  </button>
+</view>

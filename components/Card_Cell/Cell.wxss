@@ -1,0 +1,65 @@
+/* components/Card_Cell/Cell.wxss */
+.cell-voltage-container {
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.cell-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.cell-item {
+  width: calc(20% - 10px); /* 每行显示5个，可根据需要调整 */
+  min-width: 60px;
+}
+
+.cell-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 5px;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.cell-button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.cell-index {
+  font-size: 10px;
+  color: #666;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.cell-value {
+  font-size: 12px;
+  font-weight: bold;
+  color: #2196F3;
+}
+
+/* 响应式布局：小屏幕显示3列 */
+@media screen and (max-width: 400px) {
+  .cell-item {
+    width: calc(33.33% - 10px);
+  }
+}

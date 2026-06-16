@@ -1,0 +1,69 @@
+/* components/battery_progress/battery_progress.wxss */
+/* battery-progress.wxss */
+.battery-container {
+  height: 23.33vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.battery {
+  color: #34495e;
+  border: 1px solid currentColor;
+  display: inline-block;
+  width: 23.33vw;
+  height: 23.33vh;
+  position: relative;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* 电池正极 */
+.battery::before {
+  content: "";
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  right: -6px;
+  width: 3px;
+  border: 1px solid currentColor;
+  border-left: 0;
+  box-sizing: border-box;
+}
+
+/* 电池内部电量填充 */
+.battery::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 2px;
+  border-radius: 2px;
+  background-color: currentColor;
+  transition: right 500ms ease;
+}
+
+/* 不同电量状态的颜色 */
+.battery.low { color: #c0392b; }
+.battery.low::after { right: 80%; }
+
+.battery.med { color: #f39c12; }
+.battery.med::after { right: 40%; }
+
+.battery.full { color: #27ae60; }
+.battery.full::after { right: 0%; }
+
+.battery-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  color: #fff;
+  z-index: 2;
+  font-weight: bold;
+  text-shadow: 0 0 2px rgba(0,0,0,0.5);
+}

@@ -1,0 +1,65 @@
+<!--pages/data_overview/data_overview.wxml-->
+<view class="data-overview-container">
+  <!-- 充电/放电按钮 -->
+  <view class="action-buttons">
+    <button class="action-btn charge-btn" bindtap="onCharge">
+      <text class="btn-icon">⚡</text>
+      <text>充电</text>
+    </button>
+    <button class="action-btn discharge-btn" bindtap="onDischarge">
+      <text class="btn-icon">💡</text>
+      <text>放电</text>
+    </button>
+  </view>
+  
+  <!-- 电池进度条 -->
+  <view class="battery-progress">
+    <pack-progress 
+      percent="{{batteryPercent}}" 
+      bind:percentChange="onPercentChange"
+    />
+  </view>
+  
+  <!-- 电池数据展示 -->
+  <view class="data-grid">
+    <view class="data-row">
+      <view class="data-item">
+        <view class="data-icon">⚡</view>
+        <view class="data-label">电压</view>
+        <view class="data-value">{{packData.voltage}}V</view>
+      </view>
+      <view class="data-item">
+        <view class="data-icon">🔌</view>
+        <view class="data-label">电流</view>
+        <view class="data-value">{{packData.current}}A</view>
+      </view>
+      <view class="data-item">
+        <view class="data-icon">💪</view>
+        <view class="data-label">功率</view>
+        <view class="data-value">{{packData.power}}W</view>
+      </view>
+    </view>
+    <view class="data-row">
+      <view class="data-item">
+        <view class="data-icon">📊</view>
+        <view class="data-label">容量</view>
+        <view class="data-value">{{packData.capacity}}Ah</view>
+      </view>
+      <view class="data-item">
+        <view class="data-icon">🔄</view>
+        <view class="data-label">循环次数</view>
+        <view class="data-value">{{packData.cycleCount}}</view>
+      </view>
+      <view class="data-item">
+        <view class="data-icon">⏸️</view>
+        <view class="data-label">状态</view>
+        <view class="data-value">{{packData.status}}</view>
+      </view>
+    </view>
+  </view>
+   <!-- 实时数据更新提示 -->
+  <view class="update-status">
+    <text class="update-text">数据实时更新中</text>
+    <text class="update-time">更新时间: {{updateTime}}</text>
+  </view>
+</view>

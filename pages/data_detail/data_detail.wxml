@@ -1,0 +1,91 @@
+<!--pages/data_detail/data_detail.wxml-->
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="section-header">
+    <text class="section-title">电池详细数据</text>
+    <text class="section-subtitle">实时监测每个电芯的状态</text>
+  </view>
+  
+  <!-- 连接状态 -->
+  <view class="connection-status {{isConnected ? 'connected' : ''}}">
+    <view class="status-dot"></view>
+    <text>{{isConnected ? '已连接' : '未连接'}}</text>
+  </view>
+  
+  <!-- 数据更新时间 -->
+  <view class="update-info">
+    <text>数据更新时间：{{updateTime}}</text>
+    <button class="refresh-btn" bindtap="onRefresh">
+      <text class="refresh-icon">🔄</text>
+      刷新
+    </button>
+  </view>
+  
+  <!-- 单体电压 -->
+  <view class="data-section">
+    <view class="section-header">
+      <text class="section-title">单体电压</text>
+      <text class="section-badge">{{cellVoltages.length}}个电芯</text>
+    </view>
+    
+    <cell-voltage 
+      cellData="{{cellVoltages}}"
+      title="单体电压"
+      unit="V"
+      columns="4"
+      bind:celltap="onCellClick"
+    />
+  </view>
+  
+  <!-- 温度数据 -->
+  <view class="data-section">
+    <view class="section-header">
+      <text class="section-title">温度</text>
+      <text class="section-badge">{{temperatures.length}}个探头</text>
+    </view>
+    
+    <cell-voltage 
+      cellData="{{temperatures}}"
+      title="温度"
+      unit="℃"
+      columns="3"
+      bind:celltap="onCellClick"
+    />
+  </view>
+  
+  <!-- 统计信息 -->
+  <view class="statistics-section">
+    <view class="stat-title">统计信息</view>
+    <view class="stat-grid">
+      <view class="stat-item">
+        <text class="stat-label">最高电压</text>
+        <text class="stat-value">{{statistics.maxVoltage}}V</text>
+        <text class="stat-detail">单体#{{statistics.maxVoltageCell}}</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-label">最低电压</text>
+        <text class="stat-value">{{statistics.minVoltage}}V</text>
+        <text class="stat-detail">单体#{{statistics.minVoltageCell}}</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-label">压差</text>
+        <text class="stat-value">{{statistics.voltageDiff}}V</text>
+        <text class="stat-detail">{{statistics.voltageDiffStatus}}</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-label">平均电压</text>
+        <text class="stat-value">{{statistics.avgVoltage}}V</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-label">最高温度</text>
+        <text class="stat-value">{{statistics.maxTemp}}℃</text>
+        <text class="stat-detail">探头#{{statistics.maxTempProbe}}</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-label">最低温度</text>
+        <text class="stat-value">{{statistics.minTemp}}℃</text>
+        <text class="stat-detail">探头#{{statistics.minTempProbe}}</text>
+      </view>
+    </view>
+  </view>
+</view>

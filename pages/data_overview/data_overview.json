@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "数据概览",
+  "navigationBarBackgroundColor": "#2196F3",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "pack-progress": "/components/battery_progress/battery_progress"
+  }
+}
