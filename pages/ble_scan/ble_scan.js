@@ -64,7 +64,7 @@ Page({
         });
       });
   },
-
+  //显示刷新的时候调用
   onShow() {
     this.setData({
         isConnected:app.globalData.isConnected
@@ -76,7 +76,7 @@ Page({
       // this.startScan();
     }
   },
-
+  //当前界面被隐藏的时候调用
   onHide() {
     // this.stopScan();
   },

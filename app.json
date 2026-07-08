@@ -14,5 +14,15 @@
   "style": "v2",
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
-  "lazyCodeLoading": "requiredComponents"
+  "lazyCodeLoading": "requiredComponents",
+  "permission": {
+    "scope.bluetooth": {
+      "desc": "需要使用蓝牙功能连接您的设备"
+    },
+    "scope.userLocation": {
+      "desc": "需要您的位置信息以搜索蓝牙设备"
+    }
+  },
+  "requiredBackgroundModes": ["bluetooth"],
+  "usingComponents": {}
 }

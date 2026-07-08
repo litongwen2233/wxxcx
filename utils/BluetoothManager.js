@@ -46,7 +46,15 @@ export default class BluetoothManager {
             wx.showModal({
               title: '提示',
               content: '请检查手机蓝牙是否已开启',
+              icon: 'none',
+              duration: 2000,
               showCancel: false
+            });
+             // 可以监听蓝牙适配器状态，在用户开启后自动重试
+            wx.onBluetoothAdapterStateChange(function(res) {
+              if (res.available) {
+                initAdapter();
+              }
             });
           }
           reject(err);
@@ -63,8 +71,14 @@ export default class BluetoothManager {
     return new Promise((resolve, reject) => {
       wx.getBluetoothAdapterState({
         success: (res) => {
-          console.log('[蓝牙管理器] 适配器状态', res);
-          resolve(res);
+          if (res.available) {
+            wx.requestBluetoothAdapter({
+              success: function(res) {
+                // 用户授权成功，可以进行后续操作
+              }
+            });
+          }
+      
         },
         fail: (err) => {
           reject(err);
@@ -83,7 +97,7 @@ export default class BluetoothManager {
       console.warn('[蓝牙管理器] 正在搜索中...');
       return Promise.resolve();
     }
-    
+    // wx.showLoading({ title: '正在搜索设备...' });
     return new Promise((resolve, reject) => {
       wx.startBluetoothDevicesDiscovery({
         allowDuplicatesKey: options.allowDuplicatesKey || true,
